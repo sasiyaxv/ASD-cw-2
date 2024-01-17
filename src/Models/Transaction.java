@@ -7,6 +7,8 @@ public class Transaction {
     private TransactionType type;
     private String note;
 
+    private boolean isRecurring;
+
     public double getAmount() {
         return amount;
     }
@@ -37,6 +39,14 @@ public class Transaction {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public boolean isRecurring() {
+        return isRecurring;
+    }
+
+    public void setRecurring(boolean recurring) {
+        isRecurring = recurring;
     }
 }
 
