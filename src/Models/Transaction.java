@@ -1,13 +1,21 @@
 package Models;
 
 public class Transaction {
+
+    private int transactionId;
     private double amount;
     private String category;
-
     private TransactionType type;
     private String note;
-
     private boolean isRecurring;
+
+    public int getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(int transactionId) {
+        this.transactionId = transactionId;
+    }
 
     public double getAmount() {
         return amount;
