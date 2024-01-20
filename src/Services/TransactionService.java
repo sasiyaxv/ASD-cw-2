@@ -1,6 +1,7 @@
 package Services;
 
 import Data.DataManager;
+import Models.Category;
 import Models.Transaction;
 import Models.TransactionType;
 
@@ -15,7 +16,32 @@ public class TransactionService {
     }
 
     public void viewRecentTransactions() {
-        //Todo
+        List<Transaction> transactions = dataManager.getTransactions();
+
+        if (transactions.isEmpty()) {
+            System.out.println("No transactions found.");
+            return;
+        }
+
+        transactions.sort((t1, t2) -> Integer.compare(t2.getTransactionId(), t1.getTransactionId()));
+
+        System.out.println("Recent transactions:");
+        System.out.println("--------------------");
+
+        int count = 0;
+        for (Transaction transaction : transactions) {
+            System.out.println("ID: " + transaction.getTransactionId());
+            System.out.println("Amount: " + transaction.getAmount());
+            System.out.println("Category: " + transaction.getCategory());
+            System.out.println("Type: " + transaction.getType());
+            System.out.println("Note: " + transaction.getNote());
+            System.out.println("--------------------");
+
+            count++;
+            if (count >= 10) {
+                break;
+            }
+        }
     }
 
     public void enterNewTransaction() {
@@ -43,11 +69,9 @@ public class TransactionService {
         transaction.setNote(note);
         transaction.setRecurring(isRecurring);
 
-        // Generate a unique transaction ID
         int uniqueId = generateUniqueTransactionId(); // Implement this method
         transaction.setTransactionId(uniqueId);
 
-        // Add the transaction to the DataManager
         dataManager.getTransactions().add(transaction);
 
         System.out.println("Transaction added successfully with ID: " + uniqueId);
@@ -56,13 +80,11 @@ public class TransactionService {
     public void editTransactions() {
         Scanner scanner = new Scanner(System.in);
 
-        // Display a list of transactions to choose from
         viewRecentTransactions();
 
         System.out.println("Enter the ID of the transaction you want to edit:");
         int transactionIdToEdit = scanner.nextInt();
 
-        // Find the transaction to edit
         Transaction transactionToEdit = null;
         for (Transaction transaction : dataManager.getTransactions()) {
             if (transaction.getTransactionId() == transactionIdToEdit) {
@@ -76,7 +98,6 @@ public class TransactionService {
             return;
         }
 
-        // Present a menu for editing options
         System.out.println("Choose what you want to edit:");
         System.out.println("1. Amount");
         System.out.println("2. Category");
@@ -127,7 +148,6 @@ public class TransactionService {
         System.out.println("Enter the ID of the transaction you want to delete:");
         int transactionIdToDelete = scanner.nextInt();
 
-        // Find the transaction to delete
         Transaction transactionToDelete = null;
         for (Transaction transaction : dataManager.getTransactions()) {
             if (transaction.getTransactionId() == transactionIdToDelete) {
@@ -141,7 +161,6 @@ public class TransactionService {
             return;
         }
 
-        // Confirm deletion
         System.out.println("Are you sure you want to delete this transaction? (y/n)");
         String confirmation = scanner.nextLine();
 
@@ -154,7 +173,21 @@ public class TransactionService {
     }
 
     public void viewCategories() {
-        //Todo
+        List<Category> categories = dataManager.getCategories();
+
+        if (categories.isEmpty()) {
+            System.out.println("No categories found.");
+            return;
+        }
+
+        System.out.println("Available categories:");
+        System.out.println("--------------------");
+
+        for (Category category : categories) {
+            System.out.println("- Name: " + category.getName());
+            System.out.println("  Description: " + category.getDescription());
+            System.out.println("--------------------");
+        }
     }
 
     private int generateUniqueTransactionId() {
