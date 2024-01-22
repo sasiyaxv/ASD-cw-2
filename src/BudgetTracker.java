@@ -12,12 +12,10 @@ public class BudgetTracker {
     public static void main(String[] args) {
         DataManager dataManager = new DataManager();
 
-        List<Category> categoryList = readCategoriesFromCSV("src/Data/data.csv");
-        System.out.println(categoryList);
+        List<Category> categories = readCategoriesFromCSV("src/Data/data.csv");
 
-        for (Category category : categoryList) {
-            System.out.println(category);
-        }
+        List<Category> categoryList = new ArrayList<>(categories);
+        dataManager.setCategories(categoryList);
 
         UserInterface userInterface = new UserInterface(dataManager);
 
