@@ -7,6 +7,7 @@ public enum MenuOption {
     DELETE_TRANSACTIONS,
     VIEW_CATEGORIES,
     ENTER_BUDGET,
+    VIEW_REMAINING_BUDGET,
     TRACK_PROGRESS,
     EXIT
 }
