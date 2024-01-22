@@ -7,6 +7,7 @@ import Services.TransactionService;
 import Data.DataManager;
 
 import java.util.Objects;
+import java.util.Scanner;
 
 public class UserInterface {
     private DataManager dataManager;
@@ -33,6 +34,7 @@ public class UserInterface {
                     break;
                 case EDIT_TRANSACTIONS:
                     transactionService.editTransactions();
+                    break;
                 case DELETE_TRANSACTIONS:
                     transactionService.deleteTransactions();
                     break;
@@ -40,7 +42,10 @@ public class UserInterface {
                     transactionService.viewCategories();
                     break;
                 case ENTER_BUDGET:
-                    budgetService.enterBudget();
+                    enterBudget();
+                    break;
+                case VIEW_REMAINING_BUDGET:
+                    viewRemainingBudget();
                     break;
                 case TRACK_PROGRESS:
                     budgetService.trackProgressAgainstBudget();
@@ -53,5 +58,28 @@ public class UserInterface {
                     break;
             }
         } while (choice != MenuOption.EXIT);
+    }
+
+    /**
+     * Method is used to enter a budget for a specific category.
+     */
+    private void enterBudget() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the category for the budget:");
+        String category = scanner.nextLine();
+        System.out.println("Enter the budget amount:");
+        double budget = scanner.nextDouble();
+        budgetService.enterBudget(category, budget);
+    }
+
+    /**
+     * Method is used to view the remaining budget for a specific category.
+     */
+    private void viewRemainingBudget() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the category to view the remaining budget:");
+        String category = scanner.nextLine();
+        double remainingBudget = budgetService.getRemainingBudget(category);
+        System.out.println("The remaining budget for category " + category + " is: " + remainingBudget);
     }
 }
