@@ -1,0 +1,15 @@
+amount,category,type,note,isRecurring
+100.50,Groceries,EXPENSE,Weekly grocery shopping,true
+25.75,Dining,EXPENSE,Dinner with friends,false
+50.00,Entertainment,EXPENSE,Movie night,false
+200.00,Utilities,EXPENSE,Electricity bill,false
+1500.00,Salary,INCOME,Monthly salary,false
+75.20,Shopping,EXPENSE,Clothing purchase,false
+30.00,Transportation,EXPENSE,Uber ride,false
+500.00,Healthcare,EXPENSE,Doctor's appointment,false
+120.00,Utilities,EXPENSE,Internet and cable bill,true
+300.00,Salary,INCOME,Part-time job,false
+40.50,Dining,EXPENSE,Lunch at a cafe,false
+80.00,Entertainment,EXPENSE,Concert tickets,false
+45.00,Shopping,EXPENSE,Online shopping,true
+65.00,Transportation,EXPENSE,Gasoline for car,false
