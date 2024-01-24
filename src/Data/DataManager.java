@@ -11,11 +11,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataManager {
+    private static volatile DataManager instance;
+
+    private DataManager() {}
+
+    public static DataManager getInstance() {
+        if (instance == null) {
+            synchronized (DataManager.class) {
+                if (instance == null) {
+                    instance = new DataManager();
+                }
+            }
+        }
+        return instance;
+    }
+
     private Budget budget;
 
-    private List<Category> categories;
+    private List<Category> categories = new ArrayList<>();
 
-    private List<Transaction> transactions;
+    private List<Transaction> transactions = new ArrayList<>();
 
     public Budget getBudget() {
         return budget;
@@ -27,6 +42,11 @@ public class DataManager {
 
     public List<Category> getCategories() {
         return categories;
+    }
+
+    public Category addCategories(Category category) {
+        categories.add(category);
+        return category;
     }
 
     public void setCategories(List<Category> categories) {
