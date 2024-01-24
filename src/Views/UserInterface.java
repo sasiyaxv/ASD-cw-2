@@ -2,29 +2,27 @@ package Views;
 
 import Models.MenuOption;
 import Services.BudgetService;
-import Utility.Menu;
+import Services.CategoryService;
+import Utility.MainMenu;
 import Services.TransactionService;
-import Data.DataManager;
 
 import java.util.Objects;
 import java.util.Scanner;
 
 public class UserInterface {
-    private DataManager dataManager;
 
-    private BudgetService budgetService;
-    private TransactionService transactionService;
+    private static final MainMenu mainMenu = new MainMenu();
 
-    public UserInterface(DataManager dataManager) {
-        this.dataManager = dataManager;
-        this.budgetService = new BudgetService(dataManager);
-        this.transactionService = new TransactionService(dataManager);
-    }
+    private static final BudgetService budgetService = new BudgetService();
 
-    public void start() {
+    private static final TransactionService transactionService =  new TransactionService();
+
+    private static final CategoryService categoryService =  new CategoryService();
+
+    public static void start() {
         MenuOption choice;
         do {
-            choice = Menu.displayMainMenu();
+            choice = mainMenu.display();
             switch (Objects.requireNonNull(choice)) {
                 case VIEW_RECENT_TRANSACTIONS:
                     transactionService.viewRecentTransactions();
@@ -40,6 +38,9 @@ public class UserInterface {
                     break;
                 case VIEW_CATEGORIES:
                     transactionService.viewCategories();
+                    break;
+                case ADD_CATEGORY:
+                    categoryService.addCategory();
                     break;
                 case ENTER_BUDGET:
                     enterBudget();
@@ -63,7 +64,7 @@ public class UserInterface {
     /**
      * Method is used to enter a budget for a specific category.
      */
-    private void enterBudget() {
+    private static void enterBudget() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the category for the budget:");
         String category = scanner.nextLine();
@@ -75,7 +76,7 @@ public class UserInterface {
     /**
      * Method is used to view the remaining budget for a specific category.
      */
-    private void viewRemainingBudget() {
+    private static void viewRemainingBudget() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the category to view the remaining budget:");
         String category = scanner.nextLine();

@@ -2,6 +2,7 @@ package Models;
 
 public class Category {
 
+
     private String name;
 
     private String description;
@@ -19,6 +20,13 @@ public class Category {
     }
 
     public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Category() {}
+
+    public Category(String name, String description) {
+        this.name = name;
         this.description = description;
     }
 
