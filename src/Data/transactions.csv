@@ -1,16 +1,10 @@
-transactionId,amount,category,type,note,isRecurring
-1,100.50,Groceries,EXPENSE,Weekly grocery shopping,true
-2,25.75,Dining,EXPENSE,Dinner with friends,false
-3,50.00,Entertainment,EXPENSE,Movie night,false
-4,200.00,Utilities,EXPENSE,Electricity bill,false
-5,1500.00,Salary,INCOME,Monthly salary,false
-6,75.20,Shopping,EXPENSE,Clothing purchase,false
-7,30.00,Transportation,EXPENSE,Uber ride,false
-8,500.00,Healthcare,EXPENSE,Doctor's appointment,false
-9,120.00,Utilities,EXPENSE,Internet and cable bill,true
-10,300.00,Salary,INCOME,Part-time job,false
-11,40.50,Dining,EXPENSE,Lunch at a cafe,false
-12,80.00,Entertainment,EXPENSE,Concert tickets,false
-13,45.00,Shopping,EXPENSE,Online shopping,true
-14,65.00,Transportation,EXPENSE,Gasoline for car,false
-15,90.00,Healthcare,EXPENSE,Medical checkup,false
+1,100.00,Groceries,EXPENSE,Weekly grocery shopping,true
+2,50.00,Entertainment,EXPENSE,Movie night with friends,false
+3,200.00,Salary,INCOME,Monthly salary deposit,false
+4,20.00,Transportation,EXPENSE,Bus fare,false
+5,150.00,Dining,EXPENSE,Dinner at a restaurant,true
+6,300.00,Utilities,EXPENSE,Monthly utility bills,false
+7,75.50,Shopping,EXPENSE,Online shopping spree,false
+8,500.00,Rent,EXPENSE,Monthly rent payment,true
+9,80.00,Healthcare,EXPENSE,Medical checkup,false
+10,60.00,Education,EXPENSE,Textbook purchase,false

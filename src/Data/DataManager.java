@@ -3,6 +3,7 @@ package Data;
 import Models.Budget;
 import Models.Category;
 import Models.Transaction;
+import Models.TransactionType;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,7 +14,10 @@ import java.util.List;
 public class DataManager {
     private static volatile DataManager instance;
 
-    private DataManager() {}
+    private DataManager() {
+        this.categories = readCategoriesFromCSV();
+        this.transactions = readTransactionsFromFile();
+    }
 
     public static DataManager getInstance() {
         if (instance == null) {
@@ -61,10 +65,10 @@ public class DataManager {
         this.transactions = transactions;
     }
 
-    public List<Category> readCategoriesFromCSV(String filePath) {
+    private List<Category> readCategoriesFromCSV() {
         List<Category> categories = new ArrayList<>();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/Data/data.csv"))) {
 
             String line;
             while ((line = reader.readLine()) != null) {
@@ -81,7 +85,41 @@ public class DataManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return categories;
+    }
+
+    private List<Transaction> readTransactionsFromFile() {
+        List<Transaction> transactions = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/Data/transactions.csv"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+
+                for (int i = 0; i < parts.length; i++) {
+                    parts[i] = parts[i].trim();
+                }
+
+                int transactionId = Integer.parseInt(parts[0]);
+                double amount = Double.parseDouble(parts[1]);
+                String category = parts[2];
+                TransactionType type = TransactionType.valueOf(parts[3]);
+                String note = parts[4];
+                boolean isRecurring = Boolean.parseBoolean(parts[5]);
+
+                Transaction transaction = new Transaction();
+                transaction.setTransactionId(transactionId);
+                transaction.setType(type);
+                transaction.setRecurring(isRecurring);
+                transaction.setAmount(amount);
+                transaction.setNote(note);
+                transaction.setCategory(category);
+
+                transactions.add(transaction);
+            }
+        } catch (IOException | NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+        return transactions;
     }
 }
