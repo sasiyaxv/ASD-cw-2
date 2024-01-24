@@ -1,7 +1,8 @@
 package Services;
 
-import Data.DataManager;
 import Models.Transaction;
+import Services.Base.BaseService;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,13 +11,11 @@ import java.util.Map;
  * Enter a budget for each category.
  * Track the progress of the budget.
  */
-public class BudgetService {
-    private DataManager dataManager;
+public class BudgetService extends BaseService {
     private Map<String, Double> categoryBudgets;
     private Map<String, Double> categorySpendings;
 
-    public BudgetService(DataManager dataManager) {
-        this.dataManager = dataManager;
+    public BudgetService() {
         this.categoryBudgets = new HashMap<>();
         this.categorySpendings = new HashMap<>();
     }

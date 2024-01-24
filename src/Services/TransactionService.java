@@ -1,18 +1,17 @@
 package Services;
 
-import Data.DataManager;
 import Models.Category;
 import Models.Transaction;
 import Models.TransactionType;
+import Services.Base.BaseService;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class TransactionService {
-    private DataManager dataManager;
+public class TransactionService extends BaseService {
 
-    public TransactionService(DataManager dataManager) {
-        this.dataManager = dataManager;
+    public TransactionService() {
+        super();
     }
 
     public void viewRecentTransactions() {
