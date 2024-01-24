@@ -19,6 +19,7 @@ public class DataManager {
         this.transactions = readTransactionsFromFile();
     }
 
+
     public static DataManager getInstance() {
         if (instance == null) {
             synchronized (DataManager.class) {
