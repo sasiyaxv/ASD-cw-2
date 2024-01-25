@@ -43,10 +43,10 @@ public class UserInterface {
                     categoryService.addCategory();
                     break;
                 case ENTER_BUDGET:
-                    enterBudget();
+                    budgetService.enterBudget();
                     break;
                 case VIEW_REMAINING_BUDGET:
-                    viewRemainingBudget();
+                    budgetService.viewRemainingBudget();
                     break;
                 case TRACK_PROGRESS:
                     budgetService.trackProgressAgainstBudget();
@@ -59,28 +59,5 @@ public class UserInterface {
                     break;
             }
         } while (choice != MenuOption.EXIT);
-    }
-
-    /**
-     * Method is used to enter a budget for a specific category.
-     */
-    private static void enterBudget() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the category for the budget:");
-        String category = scanner.nextLine();
-        System.out.println("Enter the budget amount:");
-        double budget = scanner.nextDouble();
-        budgetService.enterBudget(category, budget);
-    }
-
-    /**
-     * Method is used to view the remaining budget for a specific category.
-     */
-    private static void viewRemainingBudget() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the category to view the remaining budget:");
-        String category = scanner.nextLine();
-        double remainingBudget = budgetService.getRemainingBudget(category);
-        System.out.println("The remaining budget for category " + category + " is: " + remainingBudget);
     }
 }

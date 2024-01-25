@@ -1,6 +1,5 @@
 package Data;
 
-import Models.Budget;
 import Models.Category;
 import Models.Transaction;
 import Models.TransactionType;
@@ -31,19 +30,9 @@ public class DataManager {
         return instance;
     }
 
-    private Budget budget;
-
     private List<Category> categories = new ArrayList<>();
 
     private List<Transaction> transactions = new ArrayList<>();
-
-    public Budget getBudget() {
-        return budget;
-    }
-
-    public void setBudget(Budget budget) {
-        this.budget = budget;
-    }
 
     public List<Category> getCategories() {
         return categories;
