@@ -9,6 +9,8 @@ public class Transaction {
     private String note;
     private boolean isRecurring;
 
+    public Transaction() {}
+
     public int getTransactionId() {
         return transactionId;
     }
