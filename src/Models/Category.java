@@ -6,7 +6,15 @@ public class Category {
     private String name;
 
     private String description;
+    private double budget;
 
+    public double getBudget() {
+        return budget;
+    }
+
+    public void setBudget(double budget) {
+        this.budget = budget;
+    }
     public String getName() {
         return name;
     }

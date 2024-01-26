@@ -13,8 +13,9 @@ public final class MainMenu {
         System.out.println("5. View categories");
         System.out.println("6. Add a category");
         System.out.println("7. Enter budget");
-        System.out.println("8. Track progress against budget");
-        System.out.println("0. Exit");
+        System.out.println("8. View remaining budget");
+        System.out.println("9. Track progress against budget");
+        System.out.println("10. Exit");
         System.out.print("Enter your choice: ");
 
         Scanner scanner = new Scanner(System.in);
@@ -28,8 +29,9 @@ public final class MainMenu {
             case 5 -> MenuOption.VIEW_CATEGORIES;
             case 6 -> MenuOption.ADD_CATEGORY;
             case 7 -> MenuOption.ENTER_BUDGET;
-            case 8 -> MenuOption.TRACK_PROGRESS;
-            case 0 -> MenuOption.EXIT;
+            case 8 -> MenuOption.VIEW_REMAINING_BUDGET;
+            case 9 -> MenuOption.TRACK_PROGRESS;
+            case 10 -> MenuOption.EXIT;
             default -> null;
         };
     }
