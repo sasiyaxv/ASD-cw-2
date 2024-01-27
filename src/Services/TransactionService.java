@@ -10,8 +10,11 @@ import java.util.Scanner;
 
 public class TransactionService extends BaseService {
 
+    private List<Category> categories;
+
     public TransactionService() {
         super();
+        this.categories = dataManager.getCategories();
     }
 
     public void viewRecentTransactions() {
@@ -46,14 +49,45 @@ public class TransactionService extends BaseService {
     public void enterNewTransaction() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter amount:");
-        double amount = scanner.nextDouble();
-
         System.out.println("Enter category:");
         String category = scanner.nextLine();
 
+        boolean categoryExists = false;
+        Category category1 = null;
+        for (Category categoryObj : categories) {
+            if (categoryObj.getName().equalsIgnoreCase(category)) {
+                categoryExists = true;
+                // Create a new category object
+                category1 = categoryObj;
+                System.out.println("The category exists.");
+
+                break;
+            }
+        }
+        // If the category does not exist, then ask the user to enter a valid category
+        if (!categoryExists) {
+            System.out.println("The category does not exist. Please enter a valid category and add the transaction");
+            this.enterNewTransaction();
+        }
+
+        System.out.println("Enter amount:");
+        double amount = scanner.nextDouble();
+        scanner.nextLine();  // Consume the leftover newline character
+
         System.out.println("Enter type (INCOME or EXPENSE):");
         TransactionType type = TransactionType.valueOf(scanner.nextLine().toUpperCase());
+
+        // if type is expense and amount is greater than budget, then print budget exceeded
+        if (type == TransactionType.EXPENSE) {
+            assert category1 != null;
+            if (amount > category1.getBudget()) {
+                System.out.println("Budget exceeded.");
+                System.out.println("Transaction Revoked.");
+                return;
+            } else {
+                category1.setBudget(category1.getBudget() - amount);
+            }
+        }
 
         System.out.println("Enter note (optional):");
         String note = scanner.nextLine();
